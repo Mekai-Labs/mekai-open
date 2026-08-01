@@ -37,22 +37,18 @@ This is the open foundation of [Mekai Labs](https://mekailabs.com): intelligence
 
 ```mermaid
 flowchart TB
-    R["Robots · AMRs · AGVs<br/>arms · cells · controllers"] --> D
-    V["VDA 5050 · MQTT"] --> D
-    ROS["ROS 2 live topics<br/>rosbag2 SQLite3 · MCAP"] --> D
-    O["WCS · WES · WMS · FMS<br/>MES · ERP"] --> D
-    S["PLC · SCADA · HMI<br/>historians"] --> D
-    E["Doors · lifts · conveyors<br/>chargers · interlocks"] --> D
-    F["JSON · JSONL · CSV<br/>APIs · files"] --> D
+    A["AUTOMATION ASSETS<br/>robots · AMRs · AGVs · arms · cells · controllers<br/>doors · lifts · conveyors · chargers · interlocks"] --> D
+    B["PROTOCOLS + FILES<br/>VDA 5050 · MQTT · ROS 2 live topics<br/>rosbag2 SQLite3 · MCAP · JSON · JSONL · CSV · APIs"] --> D
+    C["SITE + BUSINESS SYSTEMS<br/>WCS · WES · WMS · FMS · MES · ERP<br/>PLC · SCADA · HMI · historians"] --> D
 
     D["LOCAL DATA + CONTEXT LAYER<br/>exact payload · source identity · time · sessions<br/>provenance · fingerprints · gaps · drops · missingness<br/>asset · site · configuration · semantic mappings"]
-    D --> N["Normalized physical and deployment events"]
-    N --> X["Versioned deterministic function runtime"]
+    D --> N["NORMALIZED EVENTS<br/>physical behavior · deployment context"]
+    N --> X["VERSIONED FUNCTION RUNTIME<br/>declared inputs · deterministic execution · tested semantics"]
 
-    X --> P1["Operations KPIs<br/>and exceptions"]
-    X --> P2["Observability<br/>and alarms"]
-    X --> P3["Incident replay<br/>and interface checks"]
-    X --> P4["Trends · degradation<br/>custom functions"]
+    X --> P1["Operations KPIs<br/>+ exceptions"]
+    X --> P2["Observability<br/>+ alarms"]
+    X --> P3["Incident replay<br/>+ interface checks"]
+    X --> P4["Trends · degradation<br/>+ custom functions"]
 
     P1 --> Q["VALUE + COVERAGE + QUALITY<br/>COMPUTED · PARTIAL · NOT_COMPUTABLE<br/>reported/inferred basis · evidence references"]
     P2 --> Q
@@ -66,7 +62,7 @@ flowchart TB
     classDef core fill:#eef2ff,stroke:#4f46e5,color:#111827;
     classDef pack fill:#ecfeff,stroke:#0891b2,color:#111827;
     classDef result fill:#f0fdf4,stroke:#16a34a,color:#111827;
-    class R,V,ROS,O,S,E,F source;
+    class A,B,C source;
     class D,N,X core;
     class P1,P2,P3,P4 pack;
     class Q,L,B result;
@@ -79,7 +75,7 @@ The intended result is not another opaque dashboard. It is a portable calculatio
 **Target lifecycle — planned, not part of the current public interface.** AI may draft mappings, calculations and tests; it does not approve semantics or produce authoritative conclusions.
 
 ```mermaid
-flowchart LR
+flowchart TB
     A["Operational question<br/>or business calculation"] --> B["Declare function contract"]
     AI["Optional AI proposal"] -.-> B
     B --> C["Inputs · mappings · units<br/>window · missingness · permissions"]
@@ -140,20 +136,18 @@ The current Lab accepts only the approved synthetic fixture. The final encrypted
 The current code is the calculation core of the first function pack: recorded VDA 5050 3.0.0 operations analysis, synthetic/lab-qualified.
 
 ```mermaid
-flowchart LR
-    A["Mekai Capture JSONL"] --> B["Bounded streaming<br/>input boundary"]
-    B --> C["VDA 5050 3.0.0<br/>structural validation"]
-    C --> D["Normalized observations<br/>+ exact provenance"]
-    D --> E["13 registered<br/>versioned functions"]
-    E --> F["Coverage · quality<br/>diagnostics · missingness"]
-    F --> G["Deterministic<br/>analysis-run model"]
+flowchart TB
+    A["Mekai Capture JSONL"] --> B["Bounded streaming input<br/>+ VDA 5050 3.0.0 structural validation"]
+    B --> C["Normalized observations<br/>+ exact payload provenance"]
+    C --> D["13 registered versioned functions"]
+    D --> E["Deterministic analysis run<br/>+ coverage · quality · diagnostics · missingness"]
 
     classDef input fill:#eef2ff,stroke:#4f46e5,color:#111827;
     classDef core fill:#ecfeff,stroke:#0891b2,color:#111827;
     classDef result fill:#f0fdf4,stroke:#16a34a,color:#111827;
     class A input;
-    class B,C,D,E core;
-    class F,G result;
+    class B,C,D core;
+    class E result;
 ```
 
 | Executable capability | Current boundary |
