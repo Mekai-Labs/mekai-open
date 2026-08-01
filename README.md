@@ -1,183 +1,115 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/mekai-mark-light.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./docs/assets/mekai-mark-dark.svg">
-  <img alt="Mekai mark" src="./docs/assets/mekai-mark-dark.svg" width="132">
-</picture>
+<a href="https://mekailabs.com"><img alt="Mekai Labs" src="./docs/assets/mekai-logo.jpeg" width="150"></a>
 
 # Mekai Open
 
-### The open data and function layer for physical automation.
+### Open data and function infrastructure for physical automation.
 
-Turn deployment data into versioned, inspectable functions that return the value, coverage, quality, missingness and provenance behind every result.
+Connect robot, automation, and business-system data. Build versioned operational functions. Return every answer with its coverage, quality, missingness, and provenance.
+
+[Website](https://mekailabs.com) · [Live Lab](https://open.mekailabs.com) · [Security](SECURITY.md) · [Contribute](CONTRIBUTING.md)
 
 [![CI](https://github.com/Mekai-Labs/mekai-open/actions/workflows/ci.yml/badge.svg)](https://github.com/Mekai-Labs/mekai-open/actions/workflows/ci.yml)
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![VDA 5050](https://img.shields.io/badge/VDA_5050-3.0.0-111827)](https://github.com/VDA5050/VDA5050)
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-6B21A8.svg)](LICENSE)
-
-[Mekai Labs](https://mekailabs.com) · [Open Lab](https://open.mekailabs.com) · [Security](SECURITY.md) · [Contribute](CONTRIBUTING.md)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-C2410C.svg)](LICENSE)
 
 **Local-first · read-only · vendor-neutral by design · nothing sent by default**
 
 </div>
 
----
+<br>
 
-## One layer for automation data and functions
+<div align="center">
+  <a href="https://open.mekailabs.com">
+    <img alt="Mekai Lab synthetic workflow: protected access, portable run review, operational functions, and explicit missingness" src="./docs/assets/mekai-lab-synthetic-demo.gif" width="100%">
+  </a>
+  <p><sub>Live Mekai Lab flow · synthetic demonstration data · click to open the protected preview</sub></p>
+</div>
 
-Robot and factory data already exists in controllers, brokers, bags, fleet systems, PLCs, SCADA, historians and files. Mekai Open is being built to preserve where that data came from, what happened to it, and which conclusions it can support—then let anyone add reusable functions on top.
+## One layer. Many automation functions.
 
-It does not replace a robot, fleet manager, WCS, PLC or dashboard. It makes their data usable through one inspectable foundation.
+| Connect | Create | Trust |
+|---|---|---|
+| Consume data from robots, controllers, site equipment, files, brokers, and business systems. | Turn operational questions into reviewed, versioned functions instead of one-off dashboards and scripts. | Keep source identity, exact payload references, coverage, gaps, assumptions, and result basis attached to every answer. |
 
-This is the open foundation of [Mekai Labs](https://mekailabs.com): intelligence infrastructure for deployed physical automation. The broader Mekai Platform applies the same evidence discipline to commissioning, acceptance, change and revalidation; Mekai Open keeps the shared data and function layer transparent and independently useful.
+Mekai Open is not a fleet manager, WCS, PLC programmer, safety controller, or another opaque dashboard. It is the open calculation foundation that sits above existing systems and makes their data reusable.
 
-### Target architecture — availability is shown below
+## The system we are building
 
-```mermaid
-flowchart TB
-    A["AUTOMATION ASSETS<br/>robots · AMRs · AGVs · arms · cells · controllers<br/>doors · lifts · conveyors · chargers · interlocks"] --> D
-    B["PROTOCOLS + FILES<br/>VDA 5050 · MQTT · ROS 2 live topics<br/>rosbag2 SQLite3 · MCAP · JSON · JSONL · CSV · APIs"] --> D
-    C["SITE + BUSINESS SYSTEMS<br/>WCS · WES · WMS · FMS · MES · ERP<br/>PLC · SCADA · HMI · historians"] --> D
+![Mekai Open target architecture: automation inputs flow through a local context layer and versioned functions into inspectable outputs](./docs/assets/mekai-open-architecture.svg)
 
-    D["LOCAL DATA + CONTEXT LAYER<br/>exact payload · source identity · time · sessions<br/>provenance · fingerprints · gaps · drops · missingness<br/>asset · site · configuration · semantic mappings"]
-    D --> N["NORMALIZED EVENTS<br/>physical behavior · deployment context"]
-    N --> X["VERSIONED FUNCTION RUNTIME<br/>declared inputs · deterministic execution · tested semantics"]
+The architecture is intentionally broader than one protocol or robot class. Adapters bring customer-controlled data into a common local boundary; function packs add useful behavior without replacing the systems that run the site.
 
-    X --> P1["Operations KPIs<br/>+ exceptions"]
-    X --> P2["Observability<br/>+ alarms"]
-    X --> P3["Incident replay<br/>+ interface checks"]
-    X --> P4["Trends · degradation<br/>+ custom functions"]
+### Function families
 
-    P1 --> Q["VALUE + COVERAGE + QUALITY<br/>COMPUTED · PARTIAL · NOT_COMPUTABLE<br/>reported/inferred basis · evidence references"]
-    P2 --> Q
-    P3 --> Q
-    P4 --> Q
+| Operations | Engineering | User-defined |
+|---|---|---|
+| KPIs and exceptions | Incident replay and evidence | Business and operational KPIs |
+| Live observability | Robot-to-site interface checks | Custom alarms and warnings |
+| Alarm evaluation and routing | Trends and degradation | Reviewed optimization and guidance functions |
 
-    Q --> L["Local machine-readable<br/>and human-readable outputs"]
-    Q -. "explicit opt-in" .-> B["Portable run bundle<br/>and optional Mekai Lab"]
+Mobile-robot operations are the first function family. The same foundation is intended to expand to robotic arms, automation cells, and connected site equipment. A full FMS remains an evaluation area, not a near-term promise.
 
-    classDef source fill:#f8fafc,stroke:#64748b,color:#0f172a;
-    classDef core fill:#eef2ff,stroke:#4f46e5,color:#111827;
-    classDef pack fill:#ecfeff,stroke:#0891b2,color:#111827;
-    classDef result fill:#f0fdf4,stroke:#16a34a,color:#111827;
-    class A,B,C source;
-    class D,N,X core;
-    class P1,P2,P3,P4 pack;
-    class Q,L,B result;
-```
+## From a question to a reusable function
 
-The intended result is not another opaque dashboard. It is a portable calculation layer where every answer carries enough evidence to reproduce, dispute or refuse it.
+![Mekai function lifecycle: question, declared contract, truth fixtures, human review, deterministic release, and evidence-backed result](./docs/assets/mekai-function-lifecycle.svg)
 
-## How custom functions will be created
+AI may propose mappings, formulas, or tests. It does not approve semantics or become the authority. Released functions use declared inputs, reviewed truth fixtures, deterministic execution, explicit missing-data rules, and versioned outputs.
 
-**Target lifecycle — planned, not part of the current public interface.** AI may draft mappings, calculations and tests; it does not approve semantics or produce authoritative conclusions.
+Examples include:
 
-```mermaid
-flowchart TB
-    A["Operational question<br/>or business calculation"] --> B["Declare function contract"]
-    AI["Optional AI proposal"] -.-> B
-    B --> C["Inputs · mappings · units<br/>window · missingness · permissions"]
-    C --> D["Fixtures + expected truth"]
-    D --> E["Human review"]
-    E --> F["Versioned deterministic<br/>FunctionSpec"]
-    F --> G["Sandboxed dry run<br/>and regression tests"]
-    G --> H["Released function pack"]
-    H --> I["Value · coverage · quality<br/>provenance · result status"]
+- a throughput or availability definition shared across robot vendors;
+- a warning that evaluates robot, door, conveyor, lift, charger, or PLC context together;
+- a business KPI calculated from automation events and WCS/WES/WMS/MES/ERP context;
+- an engineering function that refuses a result when source coverage is insufficient.
 
-    classDef optional fill:#fff7ed,stroke:#ea580c,color:#111827,stroke-dasharray:5 5;
-    class AI optional;
-```
+## Where Mekai Open fits
 
-The runtime boundary is designed around declared inputs and outputs—not arbitrary `eval`, unreviewed plug-ins or AI-generated execution.
-
-## Open function-pack direction
-
-The project grows one market-proven function family at a time on the same data and context layer.
-
-| Order | Open function family | What it opens |
-|---:|---|---|
-| 1 | Operations KPIs and exceptions | Availability, durations, orders, throughput signals and explicit missingness |
-| 2 | Live observability | Multi-source robot and site-system state |
-| 3 | Alarms | Definition, evaluation, suppression and routing |
-| 4 | Incident replay and evidence | Reconstruct what was observed without inventing missing facts |
-| 5 | Interface verification | Robot-to-door, conveyor, lift, charger and PLC handshakes |
-| 6 | Trends and degradation | Compare observed behavior against declared references |
-| 7 | Custom function builder | Create reviewed, versioned functions on the shared layer |
-| 8 | Robotic arms and automation cells | Extend the same contracts beyond mobile robots |
-| 9 | Site equipment | Functions for connected physical infrastructure |
-| 10 | FMS | Evaluate later; not currently planned |
-
-### Open project and commercial platform
-
-| Mekai Open | Commercial Mekai Platform |
+| Mekai Open | Mekai Platform |
 |---|---|
-| Data, context and provenance | Commissioning workflows |
-| Versioned function runtime and open packs | FAT, SAT and UAT execution |
-| Coverage, missingness and replay primitives | Acceptance, approvals and governance |
-| Portable local results | Accepted baselines and change impact |
-| Open operational calculations | Revalidation and controlled closeout |
+| Open data, context, provenance, and versioned functions | Commercial deployment-assurance workflows built on the same evidence model |
+| Local operational calculations and reusable function packs | Commissioning, FAT/SAT/UAT, evidence review, release, and handover |
+| Inspectable coverage, missingness, and replay primitives | Accepted baselines, change impact, revalidation, approvals, and governance |
 
-The open runtime must remain useful on its own. The commercial product can build deployment and acceptance workflows on top without hiding the underlying calculation semantics.
-
-## Live synthetic Lab
-
-[open.mekailabs.com](https://open.mekailabs.com) is a protected preview of how portable results can be reviewed. The sequence below is captured from the live site; it uses synthetic demonstration data and does not expose an access code.
-
-![Synthetic Mekai Lab flow: protected access, upload boundary, operational dashboard and explicit missingness](./docs/assets/mekai-lab-synthetic-demo.gif)
-
-The current Lab accepts only the approved synthetic fixture. The final encrypted `.mekai-run` contract and public exporter are not part of this repository release.
+The open project must remain independently useful. The commercial platform can add multi-party workflow and authority without hiding the calculations underneath it.
 
 ---
 
-## What this repository can do today
+## What is available in this repository
 
-The current code is the calculation core of the first function pack: recorded VDA 5050 3.0.0 operations analysis, synthetic/lab-qualified.
+The current public release contains the **recorded VDA 5050 3.0.0 calculation core** for the first mobile-robot operations pack. It is synthetic/lab-qualified; it is not yet a production or cross-vendor qualification claim.
 
-```mermaid
-flowchart TB
-    A["Mekai Capture JSONL"] --> B["Bounded streaming input<br/>+ VDA 5050 3.0.0 structural validation"]
-    B --> C["Normalized observations<br/>+ exact payload provenance"]
-    C --> D["13 registered versioned functions"]
-    D --> E["Deterministic analysis run<br/>+ coverage · quality · diagnostics · missingness"]
-
-    classDef input fill:#eef2ff,stroke:#4f46e5,color:#111827;
-    classDef core fill:#ecfeff,stroke:#0891b2,color:#111827;
-    classDef result fill:#f0fdf4,stroke:#16a34a,color:#111827;
-    class A input;
-    class B,C,D core;
-    class E result;
-```
-
-| Executable capability | Current boundary |
+| Available capability | Current boundary |
 |---|---|
-| Strict Capture JSONL ingestion | Bounded streaming parser, exact payload bytes, canonical encoding, source identity, sessions and drops |
-| VDA 5050 3.0.0 structural validation | `connection`, `state`, `order` and `instantActions` against pinned vendored schemas |
+| Strict Capture JSONL ingestion | Bounded streaming input, exact payload bytes, canonical encoding, source identity, sessions, and declared drops |
+| VDA 5050 3.0.0 validation | `connection`, `state`, `order`, and `instantActions` against pinned vendored schemas |
 | Recorded analysis core | One normalized pass through 13 registered executors into a deterministic run document |
-| Source health and provenance | Fingerprints, coverage, gaps, missingness, clock/header diagnostics and retained evidence references |
-| Function contracts | Versioned IDs, declared fields, basis, missing-data rules, fixtures and result schemas |
-| Result discipline | Explicit `COMPUTED`, `PARTIAL` and `NOT_COMPUTABLE`; reported and inferred results stay separate |
-| Public CLI | List and inspect the built-in function specifications |
+| Source health and provenance | Input fingerprints, coverage, gaps, missingness, clock/header diagnostics, and evidence references |
+| Function contracts | Versioned IDs, declared fields, basis, missing-data rules, fixtures, and result schemas |
+| Result discipline | Explicit `COMPUTED`, `PARTIAL`, and `NOT_COMPUTABLE`; reported and inferred facts stay separate |
+| Public CLI | List and inspect built-in function specifications |
 | Qualification | Synthetic truth fixtures and adversarial tests on Python 3.12 |
 
-### First function pack: 13 functions
+<details>
+<summary><strong>View the 13 built-in functions</strong></summary>
 
 | Source and availability | Reported robot state | Orders and incidents |
 |---|---|---|
 | State-stream health | Connection-state duration | Observed orders |
-| Drops, gaps and sessions | Driving duration | Inferred error episodes |
+| Drops, gaps, and sessions | Driving duration | Inferred error episodes |
 | Clock and header diagnostics | Operating-mode duration | Inferred protocol order outcomes |
 | Coverage and missingness | Paused duration | Inferred execution duration |
 |  | Charging duration | Inferred finished orders per observed robot-hour |
 |  | Battery state-of-charge summary |  |
 |  | Reported safety-state duration |  |
 
-Every function has a versioned contract. A result never silently fills missing time, treats a schema-valid message as behavioral conformance, or calls an inferred protocol outcome a business outcome.
+</details>
 
 ### Current release boundary
 
-The stable end-user `analyze` command, live MQTT collection, ROS 2 bag adapters and encrypted `.mekai-run` exporter are **not in the current public release**. Their names are not presented as executable commands until clean-install qualification passes.
+The stable end-user `analyze` command, live MQTT collection, ROS 2 bag adapters, encrypted `.mekai-run` exporter, hosted customer-bundle flow, alarms, replay, interface checks, and custom-function builder are not executable public features yet. They will be marked available only after clean-install and end-to-end qualification.
 
 ## Quickstart
 
@@ -194,21 +126,31 @@ mekai-open specs list
 mekai-open specs describe vda.state_stream_health@0.1.0
 ```
 
-The analysis engine is currently a package-internal boundary. The CLI deliberately exposes only interfaces that are ready for clean-install use.
+The analysis engine remains package-internal in this release. The CLI exposes only interfaces that are ready for clean-install use.
 
-## Trust and safety boundary
+## Next function packs
+
+1. Live observability across robots and site systems.
+2. Alarm definition, evaluation, suppression, and routing.
+3. Incident replay and portable evidence bundles.
+4. Robot-to-door, conveyor, lift, charger, and PLC interface verification.
+5. Trend and degradation functions against declared references.
+6. Sandboxed custom-function creation and testing.
+7. Robotic-arm and automation-cell support.
+8. Site-equipment functions beyond robots.
+
+## Trust boundary
 
 - **Read-only:** Mekai Open does not command robots or site equipment.
-- **Not a safety authority:** reported safety fields are descriptive telemetry, not a safety or conformity finding.
-- **Not certification:** structural schema validity is not behavioral conformance, certification or acceptance.
-- **No hidden certainty:** reported and inferred results remain visibly different; missing data is part of the result.
-- **No production claim:** current qualification is synthetic/lab-only; universal cross-vendor or production qualification is not claimed.
+- **Not a safety authority:** reported safety telemetry is not a safety or conformity finding.
+- **Not certification:** schema validity is not behavioral conformance, certification, or acceptance.
+- **No hidden certainty:** reported and inferred results stay visibly different; missing data is part of the result.
 - **Local by default:** nothing is uploaded unless the user explicitly chooses an external viewer flow.
 
-## Contributing, security and license
+## Contributing, security, and license
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Report vulnerabilities privately through [SECURITY.md](SECURITY.md).
 
 Copyright © 2026 Kaustubh Krishna and Mekai Open contributors.
 
-Licensed under **AGPL-3.0-only**. See [LICENSE](LICENSE), [NOTICE](NOTICE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Licensed under **AGPL-3.0-only**. See [LICENSE](LICENSE), [NOTICE](NOTICE), and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

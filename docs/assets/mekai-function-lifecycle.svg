@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Mekai Open function creation lifecycle</title>
+  <desc id="desc">A measurement question becomes a declared contract, independent fixtures and truth, human review, a versioned deterministic function, and a result with coverage and provenance. Optional AI proposals are non-authoritative.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0D0D0D"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#C2410C"/>
+    </marker>
+    <style>
+      .title { font: 700 34px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0D0D0D; }
+      .subtitle { font: 400 20px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #6B6B6B; }
+      .number { font: 700 18px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: 1px; fill: #C2410C; }
+      .heading { font: 700 25px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0D0D0D; }
+      .body { font: 400 18px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #6B6B6B; }
+      .body-dark { font: 500 18px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0D0D0D; }
+      .callout { font: 700 19px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #FFFFFF; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="900" fill="#FAFAFA"/>
+
+  <text x="40" y="56" class="title">How a Mekai function is created</text>
+  <text x="40" y="89" class="subtitle">Declared evidence first. Deterministic execution second. No hidden AI decisions.</text>
+
+  <g aria-label="Optional non-authoritative AI proposal">
+    <rect x="235" y="126" width="730" height="88" fill="#FFFFFF" stroke="#C2410C" stroke-width="2" stroke-dasharray="10 8"/>
+    <text x="263" y="164" class="heading" fill="#C2410C" style="fill:#C2410C">Optional AI proposal</text>
+    <text x="263" y="194" class="body">Suggests mappings and checks only. A human must approve the contract.</text>
+    <line x1="600" y1="214" x2="600" y2="252" stroke="#C2410C" stroke-width="2" stroke-dasharray="8 7" marker-end="url(#arrow-orange)"/>
+  </g>
+
+  <g aria-label="Function lifecycle steps one through three">
+    <g>
+      <rect x="50" y="270" width="340" height="170" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="2"/>
+      <text x="76" y="306" class="number">01</text>
+      <text x="76" y="343" class="heading">Question</text>
+      <text x="76" y="379" class="body">What must be measured?</text>
+      <text x="76" y="414" class="body-dark">Name the user and decision.</text>
+    </g>
+
+    <line x1="390" y1="355" x2="420" y2="355" stroke="#0D0D0D" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="430" y="270" width="340" height="170" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="2"/>
+      <text x="456" y="306" class="number">02</text>
+      <text x="456" y="343" class="heading">Declared contract</text>
+      <text x="456" y="379" class="body">Inputs • units • evaluation window</text>
+      <text x="456" y="414" class="body-dark">Missingness • permissions</text>
+    </g>
+
+    <line x1="770" y1="355" x2="800" y2="355" stroke="#0D0D0D" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="810" y="270" width="340" height="170" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="2"/>
+      <text x="836" y="306" class="number">03</text>
+      <text x="836" y="343" class="heading">Fixtures + truth</text>
+      <text x="836" y="379" class="body">Synthetic inputs and edge cases</text>
+      <text x="836" y="414" class="body-dark">Write expected outputs first.</text>
+    </g>
+
+    <line x1="980" y1="440" x2="980" y2="490" stroke="#0D0D0D" stroke-width="2" marker-end="url(#arrow)"/>
+  </g>
+
+  <g aria-label="Function lifecycle steps four through six">
+    <g>
+      <rect x="810" y="500" width="340" height="170" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="2"/>
+      <text x="836" y="536" class="number">04</text>
+      <text x="836" y="573" class="heading">Human review</text>
+      <text x="836" y="609" class="body">Approve mappings and assumptions</text>
+      <text x="836" y="644" class="body-dark">A human remains accountable.</text>
+    </g>
+
+    <line x1="810" y1="585" x2="780" y2="585" stroke="#0D0D0D" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="430" y="500" width="340" height="170" fill="#0D0D0D"/>
+      <text x="456" y="536" class="number">05</text>
+      <text x="456" y="573" class="heading" fill="#FFFFFF" style="fill:#FFFFFF">Versioned function</text>
+      <text x="456" y="609" class="body" fill="#FAFAFA" style="fill:#FAFAFA">Deterministic FunctionSpec</text>
+      <text x="456" y="644" class="body-dark" fill="#FFFFFF" style="fill:#FFFFFF">No hidden AI execution.</text>
+    </g>
+
+    <line x1="430" y1="585" x2="390" y2="585" stroke="#0D0D0D" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="50" y="500" width="340" height="170" fill="#FFFFFF" stroke="#C2410C" stroke-width="2"/>
+      <text x="76" y="536" class="number">06</text>
+      <text x="76" y="573" class="heading">Traceable result</text>
+      <text x="76" y="609" class="body">Value + quality status + coverage</text>
+      <text x="76" y="644" class="body-dark">References • provenance</text>
+    </g>
+  </g>
+
+  <g aria-label="Missing evidence rule">
+    <rect x="40" y="724" width="1120" height="90" fill="#C2410C"/>
+    <text x="68" y="760" class="callout">Missing evidence stays visible</text>
+    <text x="68" y="790" class="callout" font-weight="400" style="font-weight:400">Return PARTIAL or NOT_COMPUTABLE — never invent a confident value.</text>
+  </g>
+
+  <text x="40" y="858" class="subtitle">Every result carries its function version, input references, coverage and diagnostics.</text>
+</svg>
