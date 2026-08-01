@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208 128" role="img" aria-labelledby="title">
+  <title id="title">Mekai mark</title>
+  <g fill="#050505">
+    <path d="M16 15 148 54v12L16 39Z"/>
+    <path d="M16 51 157 58v12L16 75Z"/>
+    <path d="M16 113 148 73v12L16 125Z"/>
+    <circle cx="178" cy="64" r="15"/>
+  </g>
+</svg>
