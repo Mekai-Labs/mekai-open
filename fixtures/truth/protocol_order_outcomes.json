@@ -1,0 +1,75 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.protocol_order_outcomes",
+  "synthetic": true,
+  "wire_fixture": "../vda5050/order_lifecycle_wire.json",
+  "reviewer_arithmetic": [
+    "FixtureVendor/R1 shared-order is accepted and inferred finished once; the repeated terminal wire message does not create a second finish",
+    "FixtureVendor/R2 independently reuses shared-order and is inferred finished once under its distinct robot identity",
+    "empty-last-node is indeterminate because lastNodeSequenceId=999 is arbitrary while lastNodeId is empty",
+    "updated-order accepts updates 0 and 1 but represents one order identity and one inferred finish",
+    "cancelled-order is canceled or cleared by cancelOrder and is not inferred finished",
+    "hibernate-cleared-order is cleared by startHibernation before the HIBERNATING connection state and is not inferred finished",
+    "rejected-order has INVALID_ORDER_ACTION evidence that references its orderId and update",
+    "Finished=3, canceled_or_cleared=2, rejected=1, indeterminate=1"
+  ],
+  "expected": {
+    "qualified_id": "vda.inferred_protocol_order_outcomes@0.1.0",
+    "status": "COMPUTED",
+    "basis": "INFERRED",
+    "scope": {
+      "kind": "OBSERVED_ROBOT_COHORT",
+      "subject_ids": ["FixtureVendor/R1", "FixtureVendor/R2"]
+    },
+    "outcomes": [
+      {
+        "robot_identity": {"manufacturer": "FixtureVendor", "serialNumber": "R1"},
+        "orderId": "shared-order",
+        "accepted_order_update_ids": [0],
+        "outcome": "INFERRED_FINISHED"
+      },
+      {
+        "robot_identity": {"manufacturer": "FixtureVendor", "serialNumber": "R2"},
+        "orderId": "shared-order",
+        "accepted_order_update_ids": [0],
+        "outcome": "INFERRED_FINISHED"
+      },
+      {
+        "robot_identity": {"manufacturer": "FixtureVendor", "serialNumber": "R1"},
+        "orderId": "empty-last-node",
+        "accepted_order_update_ids": [0],
+        "outcome": "INDETERMINATE"
+      },
+      {
+        "robot_identity": {"manufacturer": "FixtureVendor", "serialNumber": "R1"},
+        "orderId": "updated-order",
+        "accepted_order_update_ids": [0, 1],
+        "outcome": "INFERRED_FINISHED"
+      },
+      {
+        "robot_identity": {"manufacturer": "FixtureVendor", "serialNumber": "R1"},
+        "orderId": "cancelled-order",
+        "accepted_order_update_ids": [0],
+        "outcome": "CANCELED_OR_CLEARED"
+      },
+      {
+        "robot_identity": {"manufacturer": "FixtureVendor", "serialNumber": "R1"},
+        "orderId": "hibernate-cleared-order",
+        "accepted_order_update_ids": [0],
+        "outcome": "CANCELED_OR_CLEARED"
+      },
+      {
+        "robot_identity": {"manufacturer": "FixtureVendor", "serialNumber": "R1"},
+        "orderId": "rejected-order",
+        "accepted_order_update_ids": [],
+        "outcome": "REJECTED"
+      }
+    ],
+    "counts": {
+      "INFERRED_FINISHED": 3,
+      "CANCELED_OR_CLEARED": 2,
+      "INDETERMINATE": 1,
+      "REJECTED": 1
+    }
+  }
+}

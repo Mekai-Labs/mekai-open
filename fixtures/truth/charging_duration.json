@@ -1,0 +1,19 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.charging_duration",
+  "synthetic": true,
+  "capture_fixture": "../captures/state_feature_pack.synthetic.capture.jsonl",
+  "reviewer_arithmetic": [
+    "not_charging: 0..20 = 20 seconds",
+    "charging: 20..40 = 20 seconds",
+    "All 40 eligible seconds are covered by accepted charging values"
+  ],
+  "expected": {
+    "qualified_id": "vda.reported_charging_duration@0.1.0",
+    "status": "COMPUTED",
+    "basis": "REPORTED",
+    "durations_seconds": {"charging": 20, "not_charging": 20, "UNKNOWN": 0},
+    "eligible_seconds": 40,
+    "observed_seconds": 40
+  }
+}

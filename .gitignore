@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.python-version
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+.coverage
+coverage.xml
+htmlcov/
+
+# Environments and secrets — never commit real env files
+.env
+.env.*
+!.env.example
+
+# ROS / colcon generated artifacts
+install/
+log/
+# Colcon build directory at the repository root
+/build/
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# Local scratch and generated output (never a source of truth)
+tmp/
+out/
+runs/
+*.local.*
+
+# Local upstream audit checkout. This is not product source, a submodule, or a
+# runtime input. Official schemas used by the product are vendored and pinned.
+/VDA5050/

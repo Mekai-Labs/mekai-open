@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mekai.local/schemas/input-fingerprint-0.1.schema.json",
+  "title": "Mekai input fingerprint 0.1",
+  "type": "object",
+  "required": ["schema", "kind", "sha256", "entries"],
+  "properties": {
+    "schema": {"const": "mekai.input_fingerprint/0.1"},
+    "kind": {"enum": ["regular_file", "ros_bag"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["relative_path", "sha256", "size_bytes"],
+        "properties": {
+          "relative_path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "size_bytes": {"type": "integer", "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"kind": {"const": "ros_bag"}}},
+      "then": {
+        "properties": {
+          "entries": {"minItems": 2}
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

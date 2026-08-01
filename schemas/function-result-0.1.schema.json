@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mekai.local/schemas/function-result-0.1.schema.json",
+  "title": "Mekai function result 0.1",
+  "type": "object",
+  "required": [
+    "schema",
+    "qualified_id",
+    "status",
+    "basis",
+    "scope",
+    "value",
+    "unit",
+    "window",
+    "numerator",
+    "denominator",
+    "coverage",
+    "method_version",
+    "input_references",
+    "diagnostics"
+  ],
+  "properties": {
+    "schema": {"const": "mekai.function_result/0.1"},
+    "qualified_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]*@(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "status": {"enum": ["COMPUTED", "PARTIAL", "NOT_COMPUTABLE"]},
+    "basis": {"enum": ["REPORTED", "INFERRED"]},
+    "scope": {
+      "type": "object",
+      "required": ["kind", "subject_ids"],
+      "properties": {
+        "kind": {"enum": ["ROBOT", "OBSERVED_ROBOT_COHORT", "SOURCE"]},
+        "subject_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      },
+      "additionalProperties": false
+    },
+    "value": {},
+    "unit": {"type": ["string", "null"]},
+    "window": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["start_ns", "end_ns"],
+          "properties": {
+            "start_ns": {"type": "integer", "minimum": 0},
+            "end_ns": {"type": "integer", "minimum": 1}
+          },
+          "additionalProperties": false
+        },
+        {"type": "null"}
+      ]
+    },
+    "numerator": {},
+    "denominator": {},
+    "coverage": {
+      "type": "object",
+      "required": [
+        "eligible_duration_ns",
+        "observed_duration_ns",
+        "ratio",
+        "missing_intervals",
+        "known_missing_interval_count",
+        "missing_interval_details_truncated"
+      ],
+      "properties": {
+        "eligible_duration_ns": {"type": "integer", "minimum": 0},
+        "observed_duration_ns": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "ratio": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "missing_intervals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["start_ns", "end_ns", "reason"],
+            "properties": {
+              "start_ns": {"type": "integer", "minimum": 0},
+              "end_ns": {"type": "integer", "minimum": 1},
+              "reason": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          }
+        },
+        "known_missing_interval_count": {"type": "integer", "minimum": 0},
+        "missing_interval_details_truncated": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "method_version": {"type": "string", "minLength": 1},
+    "input_references": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "source_id",
+          "input_sha256",
+          "locator",
+          "message_family"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9._-]+$",
+            "allOf": [
+              {"not": {"enum": [".", ".."]}},
+              {"not": {"pattern": "[^A-Za-z0-9._-]"}}
+            ]
+          },
+          "input_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "locator": {"type": "string", "minLength": 1},
+          "message_family": {
+            "enum": ["connection", "order", "instantActions", "state"]
+          },
+          "topic": {"type": "string", "minLength": 1},
+          "header_identity": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "diagnostics": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "NOT_COMPUTABLE"}}},
+      "then": {
+        "properties": {
+          "value": {"type": "null"},
+          "diagnostics": {"minItems": 1}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {"enum": ["COMPUTED", "PARTIAL"]}
+        }
+      },
+      "then": {
+        "properties": {
+          "value": {"not": {"type": "null"}},
+          "window": {"type": "object"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"window": {"type": "null"}}},
+      "then": {
+        "properties": {
+          "status": {"const": "NOT_COMPUTABLE"},
+          "coverage": {
+            "properties": {
+              "eligible_duration_ns": {"const": 0},
+              "observed_duration_ns": {"const": 0},
+              "missing_intervals": {"maxItems": 0},
+              "known_missing_interval_count": {"const": 0},
+              "missing_interval_details_truncated": {"const": false}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "coverage": {
+            "properties": {
+              "missing_interval_details_truncated": {"const": true}
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "status": {"enum": ["PARTIAL", "NOT_COMPUTABLE"]}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "coverage": {
+            "properties": {
+              "observed_duration_ns": {"type": "null"}
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "status": {"const": "PARTIAL"},
+          "coverage": {
+            "properties": {
+              "ratio": {"type": "null"},
+              "missing_interval_details_truncated": {"const": true}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

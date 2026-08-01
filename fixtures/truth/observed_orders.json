@@ -1,0 +1,18 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.observed_orders",
+  "synthetic": true,
+  "wire_fixture": "../vda5050/order_lifecycle_wire.json",
+  "reviewer_arithmetic": [
+    "Seven unique robot/order identities are present in the order messages",
+    "FixtureVendor/R1 updated-order is observed with update IDs 0 and 1",
+    "FixtureVendor/R1 and FixtureVendor/R2 shared-order remain distinct",
+    "Observation does not imply acceptance, completion, or success"
+  ],
+  "expected": {
+    "qualified_id": "vda.observed_orders@0.1.0",
+    "status": "COMPUTED",
+    "basis": "REPORTED",
+    "unique_order_count": 7
+  }
+}

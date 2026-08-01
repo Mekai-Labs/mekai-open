@@ -1,0 +1,20 @@
+{
+  "vda_version": "3.0.0",
+  "upstream_repository": "https://github.com/VDA5050/VDA5050",
+  "upstream_release": {
+    "tag": "3.0.0",
+    "commit": "e9ba560b0e2d3f66526550ad5d61b8a2ad936172"
+  },
+  "upstream_schema_source_commit": "ea7c62a34a35cc5a61ddbe48d84e246870718b45",
+  "schemas": {
+    "connection.schema": "50710e678b56ddeffe2af7f3c87687abd20f425d62235e05809895074abbd555",
+    "instantActions.schema": "230bfcab4617fb9e8b93c1b9c18c99da43b1c80619e3a1ecc8daa926cd792450",
+    "order.schema": "3d8b37a6660d72dd8c581f8df583cb722a04a0b03f9fc9e7c4c59897fe29d902",
+    "state.schema": "9cb308fb2b59c591f518dabd32f030430e26963e5ad38e08d199eb1650dfc061"
+  },
+  "license": {
+    "spdx": "MIT",
+    "file": "LICENSE.txt",
+    "sha256": "e1a34a010d5572888c82ea7e9b7ee134517ef061159fdac8352e9a7c3acdd2dc"
+  }
+}

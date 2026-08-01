@@ -1,0 +1,40 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.finished_orders_per_observed_robot_hour",
+  "synthetic": true,
+  "reviewer_arithmetic": [
+    "Robot R1 eligible observed time: 3600 seconds = 1.0 robot-hour",
+    "Robot R2 eligible observed time: 1800 seconds = 0.5 robot-hour",
+    "Unique accepted inferred-finished robot/order identities: R1/A, R1/B, R2/A = 3",
+    "Repeated terminal state for A is not a second order",
+    "3 / 1.5 observed robot-hours = 2.0 finished orders per observed robot-hour",
+    "This is not site, business, material, fleet, or universal throughput"
+  ],
+  "robots": [
+    {
+      "robot": "R1",
+      "eligible_observed_seconds": 3600,
+      "accepted_inferred_finished_order_ids": ["A", "B"],
+      "duplicate_terminal_order_ids": ["A"]
+    },
+    {
+      "robot": "R2",
+      "eligible_observed_seconds": 1800,
+      "accepted_inferred_finished_order_ids": ["A"],
+      "duplicate_terminal_order_ids": []
+    }
+  ],
+  "expected": {
+    "qualified_id": "vda.inferred_protocol_finished_orders_per_observed_robot_hour@0.1.0",
+    "status": "COMPUTED",
+    "basis": "INFERRED",
+    "scope": {
+      "kind": "OBSERVED_ROBOT_COHORT",
+      "subject_ids": ["R1", "R2"]
+    },
+    "numerator_unique_finished_orders": 3,
+    "denominator_observed_robot_hours": 1.5,
+    "value": 2.0,
+    "unit": "finished_orders/observed_robot_hour"
+  }
+}

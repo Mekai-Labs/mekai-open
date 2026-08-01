@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools==83.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mekai-open"
+version = "0.1.0.dev0"
+description = "Contracts and specifications for local read-only VDA 5050 3.0.0 analysis"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = ["jsonschema==4.26.0"]
+
+[project.scripts]
+mekai-open = "mekai_open.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mekai_open = [
+  "_vendor/vda5050/*.json",
+  "_vendor/vda5050/*.schema",
+  "_vendor/vda5050/*.txt",
+]

@@ -1,0 +1,22 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.battery_state_of_charge",
+  "synthetic": true,
+  "capture_fixture": "../captures/state_feature_pack.synthetic.capture.jsonl",
+  "reviewer_arithmetic": [
+    "Accepted samples are 90, 75, and 60 percent",
+    "First=90, minimum=60, last=60, sample count=3",
+    "The last sample carries forward through the 40-second capture end"
+  ],
+  "expected": {
+    "qualified_id": "vda.reported_battery_state_of_charge@0.1.0",
+    "status": "COMPUTED",
+    "basis": "REPORTED",
+    "first_percent": 90,
+    "minimum_percent": 60,
+    "last_percent": 60,
+    "sample_count": 3,
+    "eligible_seconds": 40,
+    "observed_seconds": 40
+  }
+}

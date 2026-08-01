@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mekai.local/schemas/capture-record-0.1.schema.json",
+  "title": "Mekai Capture JSONL record 0.1",
+  "$comment": "Implemented package-internal recorded MQTT capture envelope; not a ROS envelope or transport-neutral observation contract, and not yet a stable public contract.",
+  "$defs": {
+    "schema": {"const": "mekai.capture_record/0.1"},
+    "sequence": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9223372036854775807
+    },
+    "receiveTime": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9223372036854775807,
+      "description": "Unix-epoch UTC nanoseconds used as the observation clock."
+    },
+    "receiveMonotonic": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9223372036854775807,
+      "description": "Optional transport diagnostic metadata; not the cross-source observation clock."
+    },
+    "sessionId": {"type": "string", "minLength": 1, "maxLength": 256},
+    "messageFamily": {
+      "enum": ["connection", "order", "instantActions", "state"]
+    },
+    "topic": {"type": "string", "minLength": 1, "maxLength": 4096},
+    "qos": {"type": "integer", "minimum": 0, "maximum": 2},
+    "payloadBase64": {"type": "string", "maxLength": 89478488},
+    "dropCount": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9223372036854775807
+    },
+    "dropReason": {"type": "string", "minLength": 1, "maxLength": 1024}
+  },
+  "oneOf": [
+    {
+      "title": "capture_start",
+      "type": "object",
+      "required": ["schema", "kind", "sequence", "receive_time_ns"],
+      "properties": {
+        "schema": {"$ref": "#/$defs/schema"},
+        "kind": {"const": "capture_start"},
+        "sequence": {"$ref": "#/$defs/sequence"},
+        "receive_time_ns": {"$ref": "#/$defs/receiveTime"},
+        "receive_monotonic_ns": {"$ref": "#/$defs/receiveMonotonic"}
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "session_start",
+      "type": "object",
+      "required": [
+        "schema",
+        "kind",
+        "sequence",
+        "receive_time_ns",
+        "collector_session_id"
+      ],
+      "properties": {
+        "schema": {"$ref": "#/$defs/schema"},
+        "kind": {"const": "session_start"},
+        "sequence": {"$ref": "#/$defs/sequence"},
+        "receive_time_ns": {"$ref": "#/$defs/receiveTime"},
+        "receive_monotonic_ns": {"$ref": "#/$defs/receiveMonotonic"},
+        "collector_session_id": {"$ref": "#/$defs/sessionId"}
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "message",
+      "type": "object",
+      "required": [
+        "schema",
+        "kind",
+        "sequence",
+        "receive_time_ns",
+        "collector_session_id",
+        "message_family",
+        "topic",
+        "qos",
+        "retained",
+        "duplicate",
+        "payload_base64"
+      ],
+      "properties": {
+        "schema": {"$ref": "#/$defs/schema"},
+        "kind": {"const": "message"},
+        "sequence": {"$ref": "#/$defs/sequence"},
+        "receive_time_ns": {"$ref": "#/$defs/receiveTime"},
+        "receive_monotonic_ns": {"$ref": "#/$defs/receiveMonotonic"},
+        "collector_session_id": {"$ref": "#/$defs/sessionId"},
+        "message_family": {"$ref": "#/$defs/messageFamily"},
+        "topic": {"$ref": "#/$defs/topic"},
+        "qos": {"$ref": "#/$defs/qos"},
+        "retained": {"type": "boolean"},
+        "duplicate": {"type": "boolean"},
+        "payload_base64": {"$ref": "#/$defs/payloadBase64"}
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "session_end",
+      "type": "object",
+      "required": [
+        "schema",
+        "kind",
+        "sequence",
+        "receive_time_ns",
+        "collector_session_id"
+      ],
+      "properties": {
+        "schema": {"$ref": "#/$defs/schema"},
+        "kind": {"const": "session_end"},
+        "sequence": {"$ref": "#/$defs/sequence"},
+        "receive_time_ns": {"$ref": "#/$defs/receiveTime"},
+        "receive_monotonic_ns": {"$ref": "#/$defs/receiveMonotonic"},
+        "collector_session_id": {"$ref": "#/$defs/sessionId"}
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "drop",
+      "type": "object",
+      "required": [
+        "schema",
+        "kind",
+        "sequence",
+        "receive_time_ns",
+        "collector_session_id",
+        "drop_count",
+        "drop_reason"
+      ],
+      "properties": {
+        "schema": {"$ref": "#/$defs/schema"},
+        "kind": {"const": "drop"},
+        "sequence": {"$ref": "#/$defs/sequence"},
+        "receive_time_ns": {"$ref": "#/$defs/receiveTime"},
+        "receive_monotonic_ns": {"$ref": "#/$defs/receiveMonotonic"},
+        "collector_session_id": {"$ref": "#/$defs/sessionId"},
+        "drop_count": {"$ref": "#/$defs/dropCount"},
+        "drop_reason": {"$ref": "#/$defs/dropReason"}
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "capture_end",
+      "type": "object",
+      "required": [
+        "schema",
+        "kind",
+        "sequence",
+        "receive_time_ns",
+        "complete"
+      ],
+      "properties": {
+        "schema": {"$ref": "#/$defs/schema"},
+        "kind": {"const": "capture_end"},
+        "sequence": {"$ref": "#/$defs/sequence"},
+        "receive_time_ns": {"$ref": "#/$defs/receiveTime"},
+        "receive_monotonic_ns": {"$ref": "#/$defs/receiveMonotonic"},
+        "complete": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  ]
+}

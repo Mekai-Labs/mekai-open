@@ -1,0 +1,19 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.active_error_episodes",
+  "synthetic": true,
+  "wire_fixture": "../vda5050/order_lifecycle_wire.json",
+  "reviewer_arithmetic": [
+    "The final R1 state reports one INVALID_ORDER_ACTION WARNING",
+    "Its identity includes the orderId and orderUpdateId references",
+    "The episode runs from 61 to the 62 second session boundary",
+    "Episode duration is 1 second and no description or hint is used as identity"
+  ],
+  "expected": {
+    "qualified_id": "vda.inferred_active_error_episodes@0.1.0",
+    "status": "COMPUTED",
+    "basis": "INFERRED",
+    "episode_count": 1,
+    "duration_seconds": 1
+  }
+}

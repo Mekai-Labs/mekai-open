@@ -1,0 +1,47 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.connection_session_boundary",
+  "synthetic": true,
+  "reviewer_arithmetic": [
+    "ONLINE: 0..40 + 70..90 = 40 + 20 = 60 seconds",
+    "HIBERNATING: 40..70 = 30 seconds of confirmed broker-connected hibernation",
+    "OFFLINE: 100..140 = 40 seconds",
+    "CONNECTION_BROKEN: 140..150 = 10 seconds",
+    "UNKNOWN: collector-session gap 90..100 = 10 seconds",
+    "Connection state does not expire after 30 seconds",
+    "Confirmed hibernation silence is expected and excluded from state-derived eligibility"
+  ],
+  "window_seconds": {"start": 0, "end": 150},
+  "timeline": [
+    {"time": 0, "kind": "session_start", "session": "A"},
+    {"time": 0, "kind": "connection", "state": "ONLINE", "session": "A"},
+    {"time": 40, "kind": "connection", "state": "HIBERNATING", "session": "A"},
+    {"time": 70, "kind": "connection", "state": "ONLINE", "session": "A"},
+    {"time": 90, "kind": "session_end", "session": "A"},
+    {"time": 100, "kind": "session_start", "session": "B"},
+    {"time": 100, "kind": "connection", "state": "OFFLINE", "session": "B"},
+    {"time": 140, "kind": "connection", "state": "CONNECTION_BROKEN", "session": "B"},
+    {"time": 150, "kind": "capture_end"}
+  ],
+  "expected": {
+    "qualified_id": "vda.reported_connection_state_duration@0.1.0",
+    "status": "PARTIAL",
+    "basis": "REPORTED",
+    "scope": {"kind": "ROBOT", "subject_ids": ["R1"]},
+    "value_seconds": {
+      "ONLINE": 60,
+      "OFFLINE": 40,
+      "HIBERNATING": 30,
+      "CONNECTION_BROKEN": 10,
+      "UNKNOWN": 10
+    },
+    "eligible_seconds": 150,
+    "observed_seconds": 140,
+    "missing_intervals": [
+      {"start": 90, "end": 100, "reason": "COLLECTOR_SESSION_BOUNDARY"}
+    ],
+    "expected_state_silence_intervals": [
+      {"start": 40, "end": 70, "reason": "CONFIRMED_HIBERNATION"}
+    ]
+  }
+}

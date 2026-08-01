@@ -1,0 +1,611 @@
+{
+  "synthetic": true,
+  "records": [
+    {
+      "case_id": "normal_progression",
+      "observation_time_ns": 0,
+      "message_family": "order",
+      "message": {
+        "headerId": 1,
+        "timestamp": "2026-01-01T00:00:00.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "shared-order",
+        "orderUpdateId": 0,
+        "nodes": [
+          {"nodeId": "N0", "sequenceId": 0, "released": true, "actions": []},
+          {"nodeId": "N1", "sequenceId": 2, "released": true, "actions": []}
+        ],
+        "edges": [
+          {"edgeId": "E0", "sequenceId": 1, "released": true, "actions": []}
+        ]
+      }
+    },
+    {
+      "case_id": "normal_progression",
+      "observation_time_ns": 1000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 1,
+        "timestamp": "2026-01-01T00:00:01.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "shared-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "N0",
+        "lastNodeSequenceId": 0,
+        "nodeStates": [
+          {"nodeId": "N1", "sequenceId": 2, "released": true}
+        ],
+        "edgeStates": [
+          {"edgeId": "E0", "sequenceId": 1, "released": true}
+        ],
+        "driving": true,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 80, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "normal_progression",
+      "observation_time_ns": 2000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 2,
+        "timestamp": "2026-01-01T00:00:02.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "shared-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "N1",
+        "lastNodeSequenceId": 2,
+        "nodeStates": [],
+        "edgeStates": [],
+        "driving": false,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 79, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "normal_progression",
+      "observation_time_ns": 3000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 2,
+        "timestamp": "2026-01-01T00:00:02.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "shared-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "N1",
+        "lastNodeSequenceId": 2,
+        "nodeStates": [],
+        "edgeStates": [],
+        "driving": false,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 79, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "same_order_id_other_robot",
+      "observation_time_ns": 10000000000,
+      "message_family": "order",
+      "message": {
+        "headerId": 1,
+        "timestamp": "2026-01-01T00:00:10.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R2",
+        "orderId": "shared-order",
+        "orderUpdateId": 0,
+        "nodes": [
+          {"nodeId": "M0", "sequenceId": 0, "released": true, "actions": []},
+          {"nodeId": "M1", "sequenceId": 2, "released": true, "actions": []}
+        ],
+        "edges": [
+          {"edgeId": "ME0", "sequenceId": 1, "released": true, "actions": []}
+        ]
+      }
+    },
+    {
+      "case_id": "same_order_id_other_robot",
+      "observation_time_ns": 11000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 1,
+        "timestamp": "2026-01-01T00:00:11.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R2",
+        "orderId": "shared-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "M0",
+        "lastNodeSequenceId": 0,
+        "nodeStates": [
+          {"nodeId": "M1", "sequenceId": 2, "released": true}
+        ],
+        "edgeStates": [
+          {"edgeId": "ME0", "sequenceId": 1, "released": true}
+        ],
+        "driving": true,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 70, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "same_order_id_other_robot",
+      "observation_time_ns": 12000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 2,
+        "timestamp": "2026-01-01T00:00:12.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R2",
+        "orderId": "shared-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "M1",
+        "lastNodeSequenceId": 2,
+        "nodeStates": [],
+        "edgeStates": [],
+        "driving": false,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 69, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "empty_last_node",
+      "observation_time_ns": 20000000000,
+      "message_family": "order",
+      "message": {
+        "headerId": 2,
+        "timestamp": "2026-01-01T00:00:20.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "empty-last-node",
+        "orderUpdateId": 0,
+        "nodes": [
+          {"nodeId": "X0", "sequenceId": 0, "released": true, "actions": []}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "case_id": "empty_last_node",
+      "observation_time_ns": 21000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 3,
+        "timestamp": "2026-01-01T00:00:21.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "empty-last-node",
+        "orderUpdateId": 0,
+        "lastNodeId": "",
+        "lastNodeSequenceId": 999,
+        "nodeStates": [],
+        "edgeStates": [],
+        "driving": false,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 78, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "order_update",
+      "observation_time_ns": 30000000000,
+      "message_family": "order",
+      "message": {
+        "headerId": 3,
+        "timestamp": "2026-01-01T00:00:30.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "updated-order",
+        "orderUpdateId": 0,
+        "nodes": [
+          {"nodeId": "U0", "sequenceId": 0, "released": true, "actions": []},
+          {"nodeId": "U1", "sequenceId": 2, "released": true, "actions": []}
+        ],
+        "edges": [
+          {"edgeId": "UE0", "sequenceId": 1, "released": true, "actions": []}
+        ]
+      }
+    },
+    {
+      "case_id": "order_update",
+      "observation_time_ns": 31000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 4,
+        "timestamp": "2026-01-01T00:00:31.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "updated-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "U0",
+        "lastNodeSequenceId": 0,
+        "nodeStates": [
+          {"nodeId": "U1", "sequenceId": 2, "released": true}
+        ],
+        "edgeStates": [
+          {"edgeId": "UE0", "sequenceId": 1, "released": true}
+        ],
+        "driving": true,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 77, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "order_update",
+      "observation_time_ns": 32000000000,
+      "message_family": "order",
+      "message": {
+        "headerId": 4,
+        "timestamp": "2026-01-01T00:00:32.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "updated-order",
+        "orderUpdateId": 1,
+        "nodes": [
+          {"nodeId": "U1", "sequenceId": 2, "released": true, "actions": []},
+          {"nodeId": "U2", "sequenceId": 4, "released": true, "actions": []}
+        ],
+        "edges": [
+          {"edgeId": "UE1", "sequenceId": 3, "released": true, "actions": []}
+        ]
+      }
+    },
+    {
+      "case_id": "order_update",
+      "observation_time_ns": 33000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 5,
+        "timestamp": "2026-01-01T00:00:33.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "updated-order",
+        "orderUpdateId": 1,
+        "lastNodeId": "U1",
+        "lastNodeSequenceId": 2,
+        "nodeStates": [
+          {"nodeId": "U2", "sequenceId": 4, "released": true}
+        ],
+        "edgeStates": [
+          {"edgeId": "UE1", "sequenceId": 3, "released": true}
+        ],
+        "driving": true,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 76, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "order_update",
+      "observation_time_ns": 34000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 6,
+        "timestamp": "2026-01-01T00:00:34.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "updated-order",
+        "orderUpdateId": 1,
+        "lastNodeId": "U2",
+        "lastNodeSequenceId": 4,
+        "nodeStates": [],
+        "edgeStates": [],
+        "driving": false,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 75, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "cancel_order",
+      "observation_time_ns": 40000000000,
+      "message_family": "order",
+      "message": {
+        "headerId": 5,
+        "timestamp": "2026-01-01T00:00:40.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "cancelled-order",
+        "orderUpdateId": 0,
+        "nodes": [
+          {"nodeId": "C0", "sequenceId": 0, "released": true, "actions": []},
+          {"nodeId": "C1", "sequenceId": 2, "released": true, "actions": []}
+        ],
+        "edges": [
+          {"edgeId": "CE0", "sequenceId": 1, "released": true, "actions": []}
+        ]
+      }
+    },
+    {
+      "case_id": "cancel_order",
+      "observation_time_ns": 41000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 7,
+        "timestamp": "2026-01-01T00:00:41.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "cancelled-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "C0",
+        "lastNodeSequenceId": 0,
+        "nodeStates": [
+          {"nodeId": "C1", "sequenceId": 2, "released": true}
+        ],
+        "edgeStates": [
+          {"edgeId": "CE0", "sequenceId": 1, "released": true}
+        ],
+        "driving": true,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 74, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "cancel_order",
+      "observation_time_ns": 42000000000,
+      "message_family": "instantActions",
+      "message": {
+        "headerId": 1,
+        "timestamp": "2026-01-01T00:00:42.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "actions": [
+          {
+            "actionType": "cancelOrder",
+            "actionId": "cancel-1",
+            "blockingType": "NONE",
+            "actionParameters": [
+              {"key": "orderId", "value": "cancelled-order"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "cancel_order",
+      "observation_time_ns": 43000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 8,
+        "timestamp": "2026-01-01T00:00:43.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "cancelled-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "C0",
+        "lastNodeSequenceId": 0,
+        "nodeStates": [],
+        "edgeStates": [],
+        "driving": false,
+        "actionStates": [],
+        "instantActionStates": [
+          {"actionId": "cancel-1", "actionType": "cancelOrder", "actionStatus": "FINISHED"}
+        ],
+        "powerSupply": {"stateOfCharge": 74, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "hibernate_clear",
+      "observation_time_ns": 50000000000,
+      "message_family": "order",
+      "message": {
+        "headerId": 6,
+        "timestamp": "2026-01-01T00:00:50.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "hibernate-cleared-order",
+        "orderUpdateId": 0,
+        "nodes": [
+          {"nodeId": "H0", "sequenceId": 0, "released": true, "actions": []},
+          {"nodeId": "H1", "sequenceId": 2, "released": true, "actions": []}
+        ],
+        "edges": [
+          {"edgeId": "HE0", "sequenceId": 1, "released": true, "actions": []}
+        ]
+      }
+    },
+    {
+      "case_id": "hibernate_clear",
+      "observation_time_ns": 51000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 9,
+        "timestamp": "2026-01-01T00:00:51.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "hibernate-cleared-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "H0",
+        "lastNodeSequenceId": 0,
+        "nodeStates": [
+          {"nodeId": "H1", "sequenceId": 2, "released": true}
+        ],
+        "edgeStates": [
+          {"edgeId": "HE0", "sequenceId": 1, "released": true}
+        ],
+        "driving": true,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 73, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "hibernate_clear",
+      "observation_time_ns": 52000000000,
+      "message_family": "instantActions",
+      "message": {
+        "headerId": 2,
+        "timestamp": "2026-01-01T00:00:52.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "actions": [
+          {"actionType": "startHibernation", "actionId": "hibernate-1", "blockingType": "NONE"}
+        ]
+      }
+    },
+    {
+      "case_id": "hibernate_clear",
+      "observation_time_ns": 53000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 10,
+        "timestamp": "2026-01-01T00:00:53.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "hibernate-cleared-order",
+        "orderUpdateId": 0,
+        "lastNodeId": "H0",
+        "lastNodeSequenceId": 0,
+        "nodeStates": [],
+        "edgeStates": [],
+        "driving": false,
+        "actionStates": [],
+        "instantActionStates": [
+          {"actionId": "hibernate-1", "actionType": "startHibernation", "actionStatus": "FINISHED"}
+        ],
+        "powerSupply": {"stateOfCharge": 73, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    },
+    {
+      "case_id": "hibernate_clear",
+      "observation_time_ns": 54000000000,
+      "message_family": "connection",
+      "message": {
+        "headerId": 1,
+        "timestamp": "2026-01-01T00:00:54.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "connectionState": "HIBERNATING"
+      }
+    },
+    {
+      "case_id": "rejected_order",
+      "observation_time_ns": 60000000000,
+      "message_family": "order",
+      "message": {
+        "headerId": 7,
+        "timestamp": "2026-01-01T00:01:00.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "rejected-order",
+        "orderUpdateId": 0,
+        "nodes": [
+          {
+            "nodeId": "R0",
+            "sequenceId": 0,
+            "released": true,
+            "actions": [
+              {"actionType": "fixtureUnsupportedAction", "actionId": "reject-action", "blockingType": "HARD"}
+            ]
+          }
+        ],
+        "edges": []
+      }
+    },
+    {
+      "case_id": "rejected_order",
+      "observation_time_ns": 61000000000,
+      "message_family": "state",
+      "message": {
+        "headerId": 11,
+        "timestamp": "2026-01-01T00:01:01.000Z",
+        "version": "3.0.0",
+        "manufacturer": "FixtureVendor",
+        "serialNumber": "R1",
+        "orderId": "",
+        "orderUpdateId": 0,
+        "lastNodeId": "",
+        "lastNodeSequenceId": 123,
+        "nodeStates": [],
+        "edgeStates": [],
+        "driving": false,
+        "actionStates": [],
+        "instantActionStates": [],
+        "powerSupply": {"stateOfCharge": 72, "charging": false},
+        "operatingMode": "AUTOMATIC",
+        "errors": [
+          {
+            "errorType": "INVALID_ORDER_ACTION",
+            "errorLevel": "WARNING",
+            "errorReferences": [
+              {"referenceKey": "orderId", "referenceValue": "rejected-order"},
+              {"referenceKey": "orderUpdateId", "referenceValue": "0"}
+            ]
+          }
+        ],
+        "safetyState": {"activeEmergencyStop": "NONE", "fieldViolation": false}
+      }
+    }
+  ]
+}

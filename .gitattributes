@@ -1,0 +1,4 @@
+# Official upstream schemas are immutable vendored data. Treat them as binary
+# for diff/whitespace purposes so local tooling cannot normalize their bytes.
+src/mekai_open/_vendor/vda5050/*.schema -diff -text
+src/mekai_open/_vendor/vda5050/LICENSE.txt -diff -text

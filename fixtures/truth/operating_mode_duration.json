@@ -1,0 +1,20 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.operating_mode_duration",
+  "synthetic": true,
+  "capture_fixture": "../captures/state_feature_pack.synthetic.capture.jsonl",
+  "reviewer_arithmetic": [
+    "AUTOMATIC: 0..10 = 10 seconds",
+    "MANUAL: 10..20 = 10 seconds",
+    "SERVICE: 20..40 = 20 seconds",
+    "All 40 eligible seconds are covered by accepted state samples"
+  ],
+  "expected": {
+    "qualified_id": "vda.reported_operating_mode_duration@0.1.0",
+    "status": "COMPUTED",
+    "basis": "REPORTED",
+    "durations_seconds": {"AUTOMATIC": 10, "MANUAL": 10, "SERVICE": 20, "UNKNOWN": 0},
+    "eligible_seconds": 40,
+    "observed_seconds": 40
+  }
+}

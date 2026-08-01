@@ -1,0 +1,38 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.state_gap_missingness",
+  "synthetic": true,
+  "reviewer_arithmetic": [
+    "driving=true: 0..20 = 20 seconds",
+    "driving=false: 20..50 + 80..110 = 30 + 30 = 60 seconds",
+    "HIBERNATING: 50..80 = 30 seconds excluded from eligible duration",
+    "UNKNOWN: unconfirmed silence after carry-forward expires at 110 = 10 seconds",
+    "Observed coverage: 80 / 90 eligible non-hibernating seconds"
+  ],
+  "window_seconds": {"start": 0, "end": 120},
+  "state_carry_forward_seconds": 30,
+  "timeline": [
+    {"time": 0, "kind": "state", "driving": true},
+    {"time": 20, "kind": "state", "driving": false},
+    {"time": 50, "kind": "connection", "state": "HIBERNATING"},
+    {"time": 80, "kind": "connection", "state": "ONLINE"},
+    {"time": 80, "kind": "state", "driving": false},
+    {"time": 120, "kind": "capture_end"}
+  ],
+  "expected": {
+    "qualified_id": "vda.reported_driving_duration@0.1.0",
+    "status": "PARTIAL",
+    "basis": "REPORTED",
+    "scope": {"kind": "ROBOT", "subject_ids": ["R1"]},
+    "value_seconds": {"driving": 20, "not_driving": 60, "UNKNOWN": 10},
+    "eligible_seconds": 90,
+    "observed_seconds": 80,
+    "coverage_ratio": 0.8888888888888888,
+    "excluded_intervals": [
+      {"start": 50, "end": 80, "reason": "CONFIRMED_HIBERNATION"}
+    ],
+    "missing_intervals": [
+      {"start": 110, "end": 120, "reason": "STATE_CARRY_FORWARD_EXPIRED"}
+    ]
+  }
+}

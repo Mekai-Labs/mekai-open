@@ -1,0 +1,25 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.safety_state_duration",
+  "synthetic": true,
+  "capture_fixture": "../captures/state_feature_pack.synthetic.capture.jsonl",
+  "reviewer_arithmetic": [
+    "NONE and no field violation: 0..10 = 10 seconds",
+    "MANUAL emergency stop and field violation: 10..20 = 10 seconds",
+    "REMOTE emergency stop and no field violation: 20..40 = 20 seconds",
+    "These are descriptive reported fields, not safety findings"
+  ],
+  "expected": {
+    "qualified_id": "vda.reported_safety_state_duration@0.1.0",
+    "status": "COMPUTED",
+    "basis": "REPORTED",
+    "durations_seconds": {
+      "emergency_stop=NONE;field_violation=false": 10,
+      "emergency_stop=MANUAL;field_violation=true": 10,
+      "emergency_stop=REMOTE;field_violation=false": 20,
+      "UNKNOWN": 0
+    },
+    "eligible_seconds": 40,
+    "observed_seconds": 40
+  }
+}

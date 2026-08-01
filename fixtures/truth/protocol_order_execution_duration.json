@@ -1,0 +1,20 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.protocol_order_execution_duration",
+  "synthetic": true,
+  "wire_fixture": "../vda5050/order_lifecycle_wire.json",
+  "reviewer_arithmetic": [
+    "R1 shared-order: accepted at 1 second and inferred finished at 2 seconds = 1 second",
+    "R2 shared-order: accepted at 11 seconds and inferred finished at 12 seconds = 1 second",
+    "R1 updated-order: first accepted at 31 seconds and inferred finished at 34 seconds = 3 seconds",
+    "Canceled, rejected, empty-last-node, and hibernation-cleared orders are excluded"
+  ],
+  "expected": {
+    "qualified_id": "vda.inferred_protocol_order_execution_duration@0.1.0",
+    "status": "COMPUTED",
+    "basis": "INFERRED",
+    "included_order_count": 3,
+    "excluded_order_count": 4,
+    "durations_seconds": [1, 1, 3]
+  }
+}

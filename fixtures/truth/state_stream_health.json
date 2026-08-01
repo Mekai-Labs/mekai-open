@@ -1,0 +1,201 @@
+{
+  "schema": "mekai.truth_manifest/0.1",
+  "fixture_id": "truth.state_stream_health",
+  "synthetic": true,
+  "capture_fixture": "../captures/state_stream_health.synthetic.capture.jsonl",
+  "reviewer_arithmetic": [
+    "Window: accepted capture_start 0 ns through accepted capture_end 160,000,000,000 ns = 160 seconds",
+    "Records: 25 physical and 25 capture-accepted; the schema-invalid VDA state remains capture-accepted",
+    "Messages: 18 typed = 4 connection + 1 order + 1 instantActions + 12 state",
+    "Function-eligible messages: 17 = 18 typed - 1 schema-invalid state; capture-rejected typed messages: 0",
+    "Sessions: accepted epochs start at sequences 1 and 15 even though both producer labels are reused-session",
+    "Session boundaries: 2 starts + 2 ends = 4; explicit drops: 1 record reporting 3 dropped messages",
+    "Known session gaps: 80..90 seconds and 150..160 seconds = 2 intervals and 20 seconds; observed source duration = 160 - 20 = 140 seconds; neither interval detail is truncated",
+    "R-A epoch 1 usable non-retained uint32 state messages: headers 10, 11, 11, 14, 14, 13, 15 = 7",
+    "R-A epoch 1 baseline advances at 0, 10, 20 and 75 seconds; inter-arrivals are 10, 10 and 55 seconds",
+    "R-A epoch 1 header 11 exact repeat = 1 retransmission; DUP on the first header 11 is independent and counts once",
+    "R-A epoch 1 retained header 12 is diagnostic-only and does not close the header 11 to 14 gap",
+    "R-A epoch 1 header 11 to 14 = one gap event and two missing IDs; changed header 14 = one conflict; header 13 = one regression",
+    "R-A epoch 1 confirmed HIBERNATING silence is 35..65 seconds; unconfirmed silence after carry-forward is 65..75 seconds",
+    "R-A epoch 2 has one usable state at 100 seconds and unconfirmed silence 130..150 seconds",
+    "R-B epoch 2 has two usable states at 90 and 95 seconds, one 5-second inter-arrival, and unconfirmed silence 125..150 seconds",
+    "The retained ONLINE connection at 65 seconds ends confirmed hibernation from its receipt time",
+    "The explicit drop contributes a count only and no fabricated duration"
+  ],
+  "expected": {
+    "schema": "mekai.function_result/0.1",
+    "qualified_id": "vda.state_stream_health@0.1.0",
+    "status": "PARTIAL",
+    "basis": "REPORTED",
+    "scope": {
+      "kind": "SOURCE",
+      "subject_ids": ["synthetic-source"]
+    },
+    "value": {
+      "source_id": "synthetic-source",
+      "capture": {
+        "physical_record_count": 25,
+        "capture_accepted_record_count": 25,
+        "declared_complete": true,
+        "structurally_complete": true,
+        "mutation_verified": true
+      },
+      "messages": {
+        "total_typed_message_records": 18,
+        "function_eligible_message_count": 17,
+        "capture_rejected_typed_message_count": 0,
+        "vda_invalid_message_count": 1,
+        "counts_by_message_family": {
+          "connection": 4,
+          "order": 1,
+          "instantActions": 1,
+          "state": 12
+        }
+      },
+      "sessions_and_drops": {
+        "accepted_collector_session_epoch_count": 2,
+        "session_boundary_count": 4,
+        "drop_record_count": 1,
+        "dropped_message_count": 3
+      },
+      "state_streams": [
+        {
+          "robot_identity": {
+            "manufacturer": "SyntheticVendor",
+            "serialNumber": "R-A"
+          },
+          "topic": "synthetic/R-A/state",
+          "continuity_epoch": 1,
+          "message_family": "state",
+          "first_observation_time_ns": 0,
+          "last_observation_time_ns": 75000000000,
+          "usable_state_message_count": 7,
+          "retained_state_count": 1,
+          "producer_duplicate_flag_count": 1,
+          "exact_retransmission_count": 1,
+          "header_gap_event_count": 1,
+          "missing_header_id_count": 2,
+          "header_regression_count": 1,
+          "same_header_different_payload_conflict_count": 1,
+          "observed_inter_arrival_count": 3,
+          "minimum_observed_inter_arrival_ns": 10000000000,
+          "maximum_observed_inter_arrival_ns": 55000000000,
+          "unconfirmed_state_silence_intervals": [
+            {"start_ns": 65000000000, "end_ns": 75000000000}
+          ],
+          "confirmed_hibernation_silence_intervals": [
+            {"start_ns": 35000000000, "end_ns": 65000000000}
+          ]
+        },
+        {
+          "robot_identity": {
+            "manufacturer": "SyntheticVendor",
+            "serialNumber": "R-A"
+          },
+          "topic": "synthetic/R-A/state",
+          "continuity_epoch": 15,
+          "message_family": "state",
+          "first_observation_time_ns": 100000000000,
+          "last_observation_time_ns": 100000000000,
+          "usable_state_message_count": 1,
+          "retained_state_count": 0,
+          "producer_duplicate_flag_count": 0,
+          "exact_retransmission_count": 0,
+          "header_gap_event_count": 0,
+          "missing_header_id_count": 0,
+          "header_regression_count": 0,
+          "same_header_different_payload_conflict_count": 0,
+          "observed_inter_arrival_count": 0,
+          "minimum_observed_inter_arrival_ns": null,
+          "maximum_observed_inter_arrival_ns": null,
+          "unconfirmed_state_silence_intervals": [
+            {"start_ns": 130000000000, "end_ns": 150000000000}
+          ],
+          "confirmed_hibernation_silence_intervals": []
+        },
+        {
+          "robot_identity": {
+            "manufacturer": "SyntheticVendor",
+            "serialNumber": "R-B"
+          },
+          "topic": "synthetic/R-B/state",
+          "continuity_epoch": 15,
+          "message_family": "state",
+          "first_observation_time_ns": 90000000000,
+          "last_observation_time_ns": 95000000000,
+          "usable_state_message_count": 2,
+          "retained_state_count": 0,
+          "producer_duplicate_flag_count": 0,
+          "exact_retransmission_count": 0,
+          "header_gap_event_count": 0,
+          "missing_header_id_count": 0,
+          "header_regression_count": 0,
+          "same_header_different_payload_conflict_count": 0,
+          "observed_inter_arrival_count": 1,
+          "minimum_observed_inter_arrival_ns": 5000000000,
+          "maximum_observed_inter_arrival_ns": 5000000000,
+          "unconfirmed_state_silence_intervals": [
+            {"start_ns": 125000000000, "end_ns": 150000000000}
+          ],
+          "confirmed_hibernation_silence_intervals": []
+        }
+      ]
+    },
+    "unit": null,
+    "window": {"start_ns": 0, "end_ns": 160000000000},
+    "numerator": null,
+    "denominator": null,
+    "coverage": {
+      "eligible_duration_ns": 160000000000,
+      "observed_duration_ns": 140000000000,
+      "ratio": 0.875,
+      "known_missing_interval_count": 2,
+      "missing_interval_details_truncated": false,
+      "missing_intervals": [
+        {
+          "start_ns": 80000000000,
+          "end_ns": 90000000000,
+          "reason": "COLLECTOR_SESSION_GAP"
+        },
+        {
+          "start_ns": 150000000000,
+          "end_ns": 160000000000,
+          "reason": "COLLECTOR_SESSION_GAP"
+        }
+      ]
+    },
+    "method_version": "0.1.0",
+    "input_references": [
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:10","message_family":"state","topic":"synthetic/R-A/state","header_identity":"headerId:13"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:11","message_family":"connection","topic":"synthetic/R-A/connection","header_identity":"headerId:2"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:13","message_family":"connection","topic":"synthetic/R-A/connection","header_identity":"headerId:3"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:14","message_family":"state","topic":"synthetic/R-A/state","header_identity":"headerId:15"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:17","message_family":"connection","topic":"synthetic/R-A/connection","header_identity":"headerId:4"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:18","message_family":"state","topic":"synthetic/R-B/state","header_identity":"headerId:0"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:19","message_family":"state","topic":"synthetic/R-B/state","header_identity":"headerId:1"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:20","message_family":"state","topic":"synthetic/R-A/state","header_identity":"headerId:0"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:21","message_family":"state","topic":"synthetic/R-A/state"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:22","message_family":"order","topic":"synthetic/R-A/order","header_identity":"headerId:5"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:23","message_family":"instantActions","topic":"synthetic/R-A/instantActions","header_identity":"headerId:6"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:3","message_family":"connection","topic":"synthetic/R-A/connection","header_identity":"headerId:1"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:4","message_family":"state","topic":"synthetic/R-A/state","header_identity":"headerId:10"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:5","message_family":"state","topic":"synthetic/R-A/state","header_identity":"headerId:11"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:6","message_family":"state","topic":"synthetic/R-A/state","header_identity":"headerId:11"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:7","message_family":"state","topic":"synthetic/R-A/state","header_identity":"headerId:12"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:8","message_family":"state","topic":"synthetic/R-A/state","header_identity":"headerId:14"},
+      {"source_id":"synthetic-source","input_sha256":"a94ef258ea82fc151325e360365a0777ef4de4cdc6c794239b6ea9a47eb340b9","locator":"line:9","message_family":"state","topic":"synthetic/R-A/state","header_identity":"headerId:14"}
+    ],
+    "diagnostics": [
+      "RETAINED_STATE_IGNORED@line:7",
+      "HEADER_GAP@line:8",
+      "HEADER_CONFLICT@line:9",
+      "HEADER_REGRESSION@line:10",
+      "COLLECTOR_DROP@line:12",
+      "UNCONFIRMED_STATE_SILENCE@line:14",
+      "COLLECTOR_SESSION_GAP@line:16",
+      "VDA_MESSAGE_INVALID@line:21",
+      "UNCONFIRMED_STATE_SILENCE@line:24",
+      "COLLECTOR_SESSION_GAP@line:25"
+    ]
+  }
+}
