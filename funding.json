@@ -1,0 +1,60 @@
+{
+  "$schema": "https://fundingjson.org/schema/v1.1.0.json",
+  "version": "v1.0.0",
+  "entity": {
+    "type": "individual",
+    "role": "maintainer",
+    "name": "Kaustubh Krishna",
+    "email": "kaustubh@mekailabs.com",
+    "description": "I'm Kaustubh, 20, based in Bengaluru and building my second company. I created Mekai Open and am its only core maintainer.\n\nI started coding at nine. Around ten, i joined my sister's Java classes, taught 3-4 seniors while learning and earned from it. At eleven, an electrician taught me to read a printed circuit and solder components onto a PCB. I went on to build my own PCBs, a 3D printer and robots.\n\nFor World Robot Olympiad, i travelled three hours a day to the science centre to build. We became the first and only team from Bihar to qualify for nationals, in 2019 and again in 2022. At 19, i built a racing controller solo: 3rd globally in ICRA 2025 RoboRacer simulation qualification, ahead of teams from UPenn, UCF and Minnesota. Both my open-source Reinforcement Learning Toolkit and Industrial Control Toolkit were used in that work. I also built and deployed an autonomous golf cart on campus.\n\nIn my first company, i built an engine for robot incident reconstruction, root-cause analysis and safety pre-compliance. Technical discussions with SICK led to free hardware and consultancy. I presented at ROSCon India and took a technical session for eInfochips' Head of Robotics and 30+ senior engineers.\n\nNow i build the platform at Mekai Labs and work directly with factory teams. Bhavyaa and i reached 6+ Indian OEMs within one month and have visited those OEMs and 40+ other manufacturing units. That gives us equipment and operating problems to build around. I want the reusable engineering from this work to reach people who don't have the same factory access.\n\nMy earlier projects: https://github.com/kaustubhkr/reinforcement-learning-toolkit and https://github.com/kaustubhkr/industrial-control-toolkit",
+    "webpageUrl": {
+      "url": "https://github.com/kaustubhkr"
+    }
+  },
+  "projects": [
+    {
+      "guid": "mekai-open",
+      "name": "Mekai Open",
+      "description": "Mekai Open is open-source infrastructure for connecting industrial data and building reusable tools around it. Its current public core reads recorded VDA 5050 robot messages, checks them and calculates operational results with the source and missing data attached. It has 13 registered functions. The VDA component is already used at one AMR-company client site.\n\nA lot of industrial devices are closed source. You can't properly build an adapter just from a public dataset. You need to get to the factory, connect to the actual equipment, understand its interface and test what happens. Most independent robotics builders don't have that access. We do, through our work at Mekai Labs.\n\nI want to turn more of that work into open adapters, interfaces and tools that other teams can install and extend. Start with the VDA core, make it usable outside our setup, then add more robot and controller interfaces as we test them. The wider roadmap includes reconstructing machine runs, comparing changes and checking how robots interact with the equipment around them.\n\nThe rest of the Mekai Labs platform is private for now. Mekai Open should be useful on its own. The equipment can stay closed source while the adapter we build around its available interface is open. A robotics team should be able to use our work without repeating the same integration from scratch.\n\nThe current public release is qualified with synthetic and lab tests. Use of the VDA component at one client site does not establish compatibility across vendors. The next work is to make the public interfaces, examples and tests usable by another team.",
+      "webpageUrl": {
+        "url": "https://github.com/Mekai-Labs/mekai-open"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/Mekai-Labs/mekai-open"
+      },
+      "licenses": [
+        "spdx:AGPL-3.0-only"
+      ],
+      "tags": [
+        "robotics",
+        "industrial-automation",
+        "developer-tools",
+        "data-analysis",
+        "interoperability"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "contact-maintainer",
+        "type": "other",
+        "description": "Please contact kaustubh@mekailabs.com to arrange grant payment."
+      }
+    ],
+    "plans": [
+      {
+        "guid": "open-industrial-adapters",
+        "status": "active",
+        "name": "Mekai Open adapters and public release",
+        "description": "I'm requesting INR 3,00,000 for three months of work on Mekai Open: INR 1,80,000 for development and maintenance time, and INR 1,20,000 for intercity travel and local transport to build and test against factory equipment.\n\nMonth 1: make the recorded VDA analysis core usable through a public analysis command, with installation instructions, runnable examples and tests for missing, duplicated and out-of-order messages. Another developer should be able to go from recorded input to a result without me setting it up.\n\nMonth 2: build and test a reusable adapter for an additional industrial data source accessible through our factory work. Publish the interface, supported data, example input and tests. The exact device will follow the access and integration requirements we can establish on site.\n\nMonth 3: have an independent team try the release with its own setup, fix the issues they find and publish the limitations alongside the working examples. Add a guide for contributing adapters and a public progress report covering what worked, what failed and what comes next.\n\nFactory visits matter because these interfaces sit on real hardware. I need to connect, test and return with changes. The grant would support the open adapters, examples and tests coming out of that work. Private customer data and the closed platform stay separate from the public release.\n\nMekai Open has received no outside grant, sponsorship or in-kind support. Longer term, commercial integration work at Mekai Labs can help support maintenance of the open components. I'll share progress through public releases and a quarterly write-up or community session.",
+        "amount": 300000,
+        "currency": "INR",
+        "frequency": "one-time",
+        "channels": [
+          "contact-maintainer"
+        ]
+      }
+    ]
+  }
+}
